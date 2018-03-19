@@ -15,9 +15,8 @@ for i in range(9):
     plt.subplot(3,3,i+1)
     plt.imshow(x_train[i+100],cmap='gray',interpolation='none')
     plt.title('Class {}'.format(y_train[i+100]))
+plt.show()"""
 
-#plt.show()
-"""
 
 #将数据有二维变成一维数据
 x_train = x_train.reshape(len(x_train),-1)
@@ -42,7 +41,7 @@ model.add(Dense(units=512,input_dim=784,kernel_initializer='he_normal',
                 activation='relu'))
 model.add(Dropout(0.2))#dropout 防止过拟合
 #第二层
-model.add(Dense(units=512,input_dim=784,kernel_initializer='he_normal',
+model.add(Dense(units=512,kernel_initializer='he_normal',
                 activation='relu'))
 model.add(Dropout(0.2))#dropout 防止过拟合
 
@@ -55,4 +54,6 @@ model.fit(x_train,y_train,batch_size=64,epochs=20,verbose=1,validation_split=0.0
 loss,accuracy = model.evaluate(x_test,y_test)
 print('test loss: ',loss)
 print('accuracy: ',accuracy)
+
+model.save('mnist.h5')
 
